@@ -8,7 +8,28 @@
 function maxChar(str) {
 
   //Solution
+  let chars = {};
+  let max = 0;
+  let maxChar = '';
+
+  //Storing into the object
+  for (const char of str) {
+    if (!chars[char]) {
+      chars[char] = 1;
+    }else{
+      chars[char]++;
+    }        
+  }
+
+  //storing the most appearing value
+  for (const key in chars) {
+    if(chars[key] > max){
+      max = chars[key];
+      maxChar = key;
+    }
+  }
   
+  return maxChar;
 
 }
 
