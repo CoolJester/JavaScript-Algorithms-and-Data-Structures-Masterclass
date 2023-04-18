@@ -8,6 +8,30 @@
 // chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
-function chunk(array, size) {}
+function chunk(array, size) {
+
+  //My Solution (wrong)
+  //finding out how many chunks we need
+  var chunkCount = parseInt(Math.ceil(array.length / size));
+
+  //Array where the data is stored
+  let arr = [chunkCount][size];
+
+  //Counter variable
+  let count = 0;
+
+  //filling the values into the array
+  for (let x = 0; x < chunkCount; x++) {
+    for (let y = 0; y < size; y++) {
+      arr[x][y] = array[count];
+
+      count++;
+    }    
+  }
+
+  return arr;
+
+
+}
 
 module.exports = chunk;
