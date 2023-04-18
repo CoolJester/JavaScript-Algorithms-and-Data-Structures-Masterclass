@@ -9,17 +9,17 @@
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
 function chunk(array, size) {
-  //Solution 1
+
+  //Array to store the sub arrays
   const chucked = [];
+  let index = 0;
 
-  for (const element of array) {
-    const last =  chucked[chucked.length - 1];
-
-    if (!last || last.length === size) {
-      chucked.push([element]);
-    }else{
-      last.push(element);
-    }
+  //Slice to cut the array into different pieces
+  while (index < array.length) {
+    //Slice from the array index Till (index + size) *NOTE* the second parameter is not selected when slicing
+    chucked.push(array.slice(index, index + size));
+    //Incrementing the index for the next chunk piece
+    index += size;
   }
 
   return chucked;
@@ -48,3 +48,18 @@ module.exports = chunk;
   // }
 
   // return arr;
+
+  // //Solution 1
+  // const chucked = [];
+
+  // for (const element of array) {
+  //   const last =  chucked[chucked.length - 1];
+
+  //   if (!last || last.length === size) {
+  //     chucked.push([element]);
+  //   }else{
+  //     last.push(element);
+  //   }
+  // }
+
+  // return chucked;
