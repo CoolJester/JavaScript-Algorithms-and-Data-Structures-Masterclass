@@ -9,53 +9,82 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 function anagrams(stringA, stringB) {
-  //My Solution
-  //control
-  let match = true;
+  //Solution 1
+  //loop to make the char map to avoid making 2 loops
+  const aCharMap = buildCharMap(stringA);
+  const bCharMap = buildCharMap(stringB);
 
-  //store the strings and a lowercase format with no spaces and puncuations
-  let wordOne = stringA.replace(/[^\w]/g, "").toLowerCase();
-  let wordTwo = stringB.replace(/[^\w]/g, "").toLowerCase();
-
-  //objects
-  let objOne = {};
-  let objTwo = {};
-
-  //Making the strings into objects
-  for (const char of wordOne) {
-    if (!objOne[char]) {
-      objOne[char] = 1;
-    }else{
-      objOne[char]++;
-    }
-  }
-  for (const char of wordTwo) {
-    if (!objTwo[char]) {
-      objTwo[char] = 1;
-    }else{
-      objTwo[char]++;
+  //matching the number of keys to see if they have the same number of keys
+  if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
+    return false;
+  }else{
+    for (const key in aCharMap) {
+      if (aCharMap[key] !== bCharMap[key]) {
+        return false;
+      }
     }
   }
 
-  //loop through the onjects to see the matches
-  for (const key in objOne) {
-    if (objOne[key] == objTwo[key]) {
-      match = true;
-    }else{
-      match = false;
-    }
-  }
+  return true;
+}
 
-  for (const key in objTwo) {
-    if (objTwo[key] == objOne[key]) {
-      match = true;
-    }else{
-      match = false;
-    }
-    
-  }
+//helper function
+function buildCharMap(str){
+  const charMap = {};
+  for (const char of str.replace(/[^\w]/g).toLowerCase()) {
+    charMap[char] = charMap[char] + 1 || 1;
+  } 
+  console.log(charMap);
 
-  return match;
+  return charMap;
 }
 
 module.exports = anagrams;
+
+  // //My Solution
+  // //control
+  // let match = true;
+
+  // //store the strings and a lowercase format with no spaces and puncuations
+  // let wordOne = stringA.replace(/[^\w]/g, "").toLowerCase();
+  // let wordTwo = stringB.replace(/[^\w]/g, "").toLowerCase();
+
+  // //objects
+  // let objOne = {};
+  // let objTwo = {};
+
+  // //Making the strings into objects
+  // for (const char of wordOne) {
+  //   if (!objOne[char]) {
+  //     objOne[char] = 1;
+  //   }else{
+  //     objOne[char]++;
+  //   }
+  // }
+  // for (const char of wordTwo) {
+  //   if (!objTwo[char]) {
+  //     objTwo[char] = 1;
+  //   }else{
+  //     objTwo[char]++;
+  //   }
+  // }
+
+  // //loop through the onjects to see the matches
+  // for (const key in objOne) {
+  //   if (objOne[key] == objTwo[key]) {
+  //     match = true;
+  //   }else{
+  //     match = false;
+  //   }
+  // }
+
+  // for (const key in objTwo) {
+  //   if (objTwo[key] == objOne[key]) {
+  //     match = true;
+  //   }else{
+  //     match = false;
+  //   }
+    
+  // }
+
+  // return match;
