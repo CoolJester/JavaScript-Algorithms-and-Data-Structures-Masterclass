@@ -8,13 +8,14 @@
 //   vowels('Why?') --> 0
 
 function vowels(str) {
-  //My Solution 
+  //Solution 1
   let counter = 0;
-  //check the vowels using a loop
-  for (const ele of str.toLowerCase()) {
+  const checker = ['a', 'e', 'i', 'o', 'u'];
+  
+  for (let ele of str.toLowerCase()) {
     //check the item
-    if(ele === 'a' || ele === 'e' || ele === 'i' || ele === 'o' || ele === 'u'){
-      counter++;
+    if(checker.includes(ele)){
+      counter++; 
     }
   }
 
@@ -22,3 +23,15 @@ function vowels(str) {
 }
 
 module.exports = vowels;
+
+// //My Solution 
+// let counter = 0;
+// //check the vowels using a loop
+// for (const ele of str.toLowerCase()) {
+//   //check the item
+//   if(ele === 'a' || ele === 'e' || ele === 'i' || ele === 'o' || ele === 'u'){
+//     counter++;
+//   }
+// }
+
+// return counter;
