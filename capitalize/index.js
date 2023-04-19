@@ -8,19 +8,28 @@
 //   capitalize('look, it is working!') --> 'Look, It Is Working!'
 
 function capitalize(str) {
-  //My solution - trying to use the every function
-  let word = str.split('');
+  //Solution 1 - split by the words to the words
+  const words = [];
 
-  //first letter
-  word[0] = word[0].toUpperCase();
-
-  for (let x = 0; x < word.length; x++) {
-    if(word[x] === " "){
-      word[x + 1] = word [x + 1].toUpperCase();
-    }
+  for (let word of str.split(' ')) {
+    words.push(word[0].toUpperCase() + word.slice(1));
   }
 
-  return word.join('');
+  return words.join(' ');
 }
 
 module.exports = capitalize;
+
+// //My solution - trying to use the every function
+// let word = str.split('');
+
+// //first letter
+// word[0] = word [0].toUpperCase();
+
+// for (let x = 0; x < word.length; x++) {
+//   if(word[x] === " "){
+//     word[x + 1] = word [x + 1].toUpperCase();
+//   }
+// }
+
+// return word.join('');
