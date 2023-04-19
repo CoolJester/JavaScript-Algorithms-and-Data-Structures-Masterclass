@@ -14,6 +14,25 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+function pyramid(n) {
+  //Solution 1
+  //find the center point
+  const midpoint = Math.floor((2 * n - 1) / 2);
+
+  for (let row = 0; row < n; row++) {
+    let level = '';
+    
+    //2 * n - 1 will help with finding out the number of columns
+    for (let column = 0; column < 2 * n - 1; column++) {
+      if (midpoint - row <= column && midpoint + row >= column) {
+        level += '#';
+      }else{
+        level += ' ';
+      }      
+    }
+
+    console.log(level);
+  }
+}
 
 module.exports = pyramid;
