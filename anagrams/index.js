@@ -9,35 +9,16 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 function anagrams(stringA, stringB) {
-  //Solution 1
-  //loop to make the char map to avoid making 2 loops
-  const aCharMap = buildCharMap(stringA);
-  const bCharMap = buildCharMap(stringB);
-
-  //matching the number of keys to see if they have the same number of keys
-  if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
-    return false;
-  }else{
-    for (const key in aCharMap) {
-      if (aCharMap[key] !== bCharMap[key]) {
-        return false;
-      }
-    }
-  }
-
-  return true;
+  //Solution 2
+  //try to sort the strings into arrays and compare the 2
+  return cleanString(stringA) === cleanString(stringB);
 }
 
-//helper function
-function buildCharMap(str){
-  const charMap = {};
-  for (const char of str.replace(/[^\w]/g).toLowerCase()) {
-    charMap[char] = charMap[char] + 1 || 1;
-  } 
-  console.log(charMap);
-
-  return charMap;
+function cleanString(str){
+  return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
 }
+
+
 
 module.exports = anagrams;
 
@@ -88,3 +69,32 @@ module.exports = anagrams;
   // }
 
   // return match;
+
+  // //Solution 1
+  // //loop to make the char map to avoid making 2 loops
+  // const aCharMap = buildCharMap(stringA);
+  // const bCharMap = buildCharMap(stringB);
+
+  // //matching the number of keys to see if they have the same number of keys
+  // if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
+  //   return false;
+  // }else{
+  //   for (const key in aCharMap) {
+  //     if (aCharMap[key] !== bCharMap[key]) {
+  //       return false;
+  //     }
+  //   }
+  // }
+
+  // return true;
+  ////helper function
+
+  // function buildCharMap(str){
+  //   const charMap = {};
+  //   for (const char of str.replace(/[^\w]/g).toLowerCase()) {
+  //     charMap[char] = charMap[char] + 1 || 1;
+  //   } 
+  //   console.log(charMap);
+
+  //   return charMap;
+  // }
