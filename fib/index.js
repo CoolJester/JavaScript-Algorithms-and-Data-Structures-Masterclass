@@ -9,17 +9,24 @@
 //   fib(4) === 3
 
 function fib(n) {
-  //My Solution
-  let myFib = [0, 1];
-
-  for (let i = 2; i <= n; i++) {
-    const a = myFib[i - 1];
-    const b = myFib[i - 2];
-
-    myFib[i] = (a + b);
+  //Solution 1
+  if(n < 2){
+    return n;
   }
 
-  return myFib[n];
+  return fib(n - 1) + fib(n - 2);
 }
 
 module.exports = fib;
+
+// //My Solution
+// let myFib = [0, 1];
+
+// for (let i = 2; i <= n; i++) {
+//   const a = myFib[i - 1];
+//   const b = myFib[i - 2];
+
+//   myFib[i] = (a + b);
+// }
+
+// return myFib[n];
