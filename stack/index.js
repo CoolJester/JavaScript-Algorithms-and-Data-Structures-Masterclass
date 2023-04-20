@@ -16,17 +16,15 @@ class Stack {
   }
 
   push(value){
-    this.data.unshift(value);
+    this.data.push(value);
   }
 
   pop(){
-    let value = this.data[0];
-    this.data = this.data.slice(1);
-    return value;
+    this.data.pop()
   }
 
   peek(){
-    return this.data[0];
+    return this.data[this.data.length - 1];
   }
 
 
