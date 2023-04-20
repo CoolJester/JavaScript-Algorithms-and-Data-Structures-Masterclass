@@ -8,16 +8,44 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {
-  //Solution 1
+//Using memoization to make the function better
+function memoize(fn){
+
+  //storage area
+  const cache = {};
+
+  //Telling the function we don't know how many arguments it's going to receive
+  return function(...args){
+    //Check to see if the function has been called with this set of arguments before
+    if (cache[args]) {
+      //imidiatly return that and don't do anymore work
+      return cache[args];
+    }
+
+    //nvr called the slow function with the set of arguments b4
+    const result = fn.apply(this, args);
+    //Store the results in the cache
+    cache[args] = result;
+    
+    return result;
+  }
+}
+
+function slowFib(n) {
+  //Solution 2
   if(n < 2){
     return n;
   }
 
-  return fib(n - 1) + fib(n - 2);
+  return slowFib(n - 1) + slowFib(n - 2);
 }
 
+//Calling the slow function within the memoize function then return the variable it's stored in
+const fib = memoize(slowFib);
+
 module.exports = fib;
+
+
 
 // //My Solution
 // let myFib = [0, 1];
@@ -30,3 +58,10 @@ module.exports = fib;
 // }
 
 // return myFib[n];
+
+// //Solution 1 - recursive
+// if(n = 1){
+//   return n;
+// }
+
+// return fib(n - 1) + fib(n - 2);
